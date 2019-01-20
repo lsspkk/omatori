@@ -1,0 +1,19 @@
+{
+  "name": "omatori_backend",
+  "version": "1.0.0",
+  "description": "some tori fi parsing",
+  "main": "server.js",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.4",
+    "request": "^2.88.0",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "lss pkk <lsspkk@gmail.com>",
+  "license": "MIT"
+}

@@ -1,0 +1,125 @@
+body, #app {
+    background: #222;
+    width: 100%;
+}
+.items {
+    background: #222;
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+
+}
+.item {
+    width: 220px;
+    height: 250px;
+    display: block;
+    float: left;
+    background: #222;
+}
+.image {
+    width: 200px;
+    height: auto;
+    max-height: 200px;
+    margin: 2px auto;
+    display: block;
+}
+.date {
+    height: 10px;
+    line-height: 10px;
+    font-size: 10px;
+}
+.description {
+    font-size: 80%;
+    line-height: 1.25em;
+    height: 40px;
+    display: block;
+}
+.item a {
+    color: #ddd !important; 
+    text-decoration: none !important;
+}
+#bar {
+    background: rgb(48, 122, 212);
+    padding: 5px;
+    display: flex;
+    color: #fff;
+}
+#bar p {
+    margin-bottom: 0px;
+    margin-top: -2px;
+}
+#bar label {
+    color: #fff;
+    display:inline;
+}
+#bar .checkbox {
+    min-width: auto;
+    width: auto;
+    float: none;
+    padding-left: 20px;
+    margin-top: 2px;
+}
+#bar input, #bar select {
+    width: 30%;
+    min-width: 200px;
+    float: left;
+    margin-right: 5px;
+}
+#third {
+    width: 30%;
+}
+#categories {
+    float: left;
+}
+#search {
+    float: right;
+    color: rgb(08, 82, 112);
+    border: 2px solid rgb(0, 82, 112);
+    border-radius: 5px;
+    background: #fff;
+    padding: 0px 20px 0px;
+    line-height: 8px;
+    margin: 0px;
+}
+.message p {
+    width: 100%;
+    margin: 20px auto;
+    font-size: 150%;
+    font-weight: bold;
+    text-align: center;
+    color: #ddd;
+}
+@media all and (max-width: 500px) {
+    #bar {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    #bar input, #bar select {
+        width:100%;
+        float:none;
+    }
+    .image {
+        width: 150px;
+        max-height: 150px;
+    }
+    .item {
+        width: 47%;
+        padding: 0 1%;
+        height: 200px;
+    }
+    .items {
+        margin: 0 1%;
+    }
+    #bar p {
+        display: inline;
+        padding-right: 20px;
+        line-height: 40px;
+    }
+    #third {
+        margin-top: 5px;
+        width: 100%;
+    }
+    
+}

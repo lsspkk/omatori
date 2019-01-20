@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Vue intro</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://npmcdn.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/kube/6.5.2/css/kube.css">
+</head>
+
+<body>
+	<div id="app" class="page">
+		<div id="bar">
+			<input id="query" @keyup.enter="doQuery()" v-model="query" />
+
+			<select id="category" name="category" class="search_category" v-model="category">
+				<option value="0">Kaikki osastot</option>
+
+				<option class="main_category" value="2000">-- AJONEUVOT JA KONEET --</option>
+
+				<option value="2010">Autot</option>
+				<option value="2095">Ruotsin autot</option>
+				<option value="2040">Auton varaosat ja tarvikkeet</option>
+				<option value="2020">Matkailuautot ja asuntovaunut</option>
+				<option value="2090">Matkailuautojen tarvikkeet</option>
+				<option value="2030">Moto</option>
+				<option value="2070">Mototarvikkeet ja varaosat</option>
+				<option value="2080">Työkoneet ja kalusto</option>
+				<option value="2050">Veneet</option>
+				<option value="2060">Venetarvikkeet ja veneily</option>
+
+				<option class="main_category" value="1000">-- ASUNNOT JA TONTIT --</option>
+
+				<option value="1010">Asunnot</option>
+				<option value="1020">Mökit ja loma-asunnot</option>
+				<option value="1030">Tontit</option>
+				<option value="1060">Metsötilat ja maatilat</option>
+				<option value="1040">Autotallit ja varastot</option>
+				<option value="1050">Ulkomaan asunnot</option>
+
+				<option class="main_category" value="3000">-- KOTI JA ASUMINEN --</option>
+
+				<option value="3010">Kodinkoneet</option>
+				<option value="3100">Keittiötarvikkeet ja astiat</option>
+				<option value="3020">Sisustus ja huonekalut</option>
+				<option value="3040">Piha ja puutarha</option>
+				<option value="3050">Vaatteet ja kengät</option>
+				<option value="3060">Asusteet ja kellot</option>
+				<option value="3070">Lastenvaatteet ja kengät</option>
+				<option value="3080">Lastentarvikkeet ja lelut</option>
+				<option value="3090">Rakennustarvikkeet ja työkalut</option>
+
+				<option class="main_category" value="4000">-- VAPAA-AIKA JA HARRASTUKSET --</option>
+
+				<option value="4010">Urheilu ja ulkoilu</option>
+				<option value="4150">Polkupyörät ja pyöräily</option>
+				<option value="4070">Musiikki ja soittimet</option>
+				<option value="4050">Metsästys</option>
+				<option value="4055">Kalastus</option>
+				<option value="4030">Elokuvat</option>
+				<option value="4130">Kirjat ja lehdet</option>
+				<option value="4040">Lemmikkieläimet</option>
+				<option value="4060">Hevoset ja hevosurheilu</option>
+				<option value="4090">Matkat ja liput</option>
+				<option value="4080">Keräily</option>
+				<option value="4170">Käsityöt</option>
+				<option value="4100">Kamerat ja valokuvaus</option>
+				<option value="4190">Pelit ja muut harrastukset</option>
+
+				<option class="main_category" value="5000">-- ELEKTRONIIKKA --</option>
+
+				<option value="5010">Puhelimet ja tarvikkeet</option>
+				<option value="5020">Viihde-elektroniikka</option>
+				<option value="5030" selected="selected">Tietokoneet ja lisälaitteet</option>
+
+				<option class="main_category" value="6000">-- LIIKETOIMINTA JA TYöPAIKAT --</option>
+
+				<option value="6010">Avoimet työpaikat</option>
+				<option value="6020">CV ja työhakemukset</option>
+				<option value="6030">Palvelut</option>
+				<option value="6040">Maatalous</option>
+				<option value="6050">Rakennuspalvelut</option>
+				<option value="6060">Liikkeille ja yrityksille</option>
+
+				<option class="main_category" value="7000">-- MUUT --</option>
+
+				<option value="7010">Muut</option>
+			</select>
+
+			<div id="third">
+				<div id="categories">
+				<p><input type="checkbox" class="checkbox" id="onsale" v-model="onsale" /><label for="onsale">Myydään</label></label></p>
+				<p><input type="checkbox" class="checkbox" id="free" v-model="free" /><label for="free">Annetaan</label></p>
+				</div>
+				<button id="search" class="is-small is-secondary is-icon" @click="doQuery()"><span class="icon-kube-search"></span>Hae</button>
+			</div>
+
+		</div>
+		<div class="items">
+			<div class="item" v-for="item in items">
+				<a :href="item.link">
+					<img class="image" :src="item.image" onerror="this.src='https://vuejs.org/images/logo.png'"/>
+					<div class="date">{{item.date}}</div>
+					<div class="description"><span class="price">{{ item.price }}€</span> {{item.description}} </div>
+				</a>
+			</div>
+		</div>
+		<div v-if="isLoading" class="message">
+			<p>Ladataan seuraavat ilmoitukset</p>
+		</div>
+		<div v-if="noMoreData" class="message">
+			<p>Ei löydy enää ilmoituksia, tee uusi haku.</p>
+		</div>
+
+		<script src="script.js"></script>
+
+</body>
+
+</html>

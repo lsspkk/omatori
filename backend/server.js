@@ -11,8 +11,8 @@ const port = 3000
 app.get('/', (req, res) => res.send('Hello World!'))
 
 // https://github.com/request/request
-app.get('/query/:keyword', (req, res) => {
-  var keyword = encodeURIComponent(req.params.keyword)
+app.get('/query', (req, res) => {
+  var keyword = encodeURIComponent(req.query.keyword)
   console.log(keyword, req.query.category, req.query.onsale, req.query.free, req.query.page)
 
   var url = 'https://www.tori.fi/pirkanmaa?q='+keyword+'&cg='+req.query.category+'&w=111'

@@ -28,7 +28,7 @@ var doParse = function (data) {
       results.push({
         image: $(elem).find('.item_image').attr('src'),
         date: $(elem).find('.date_image').text(),
-        description: $(elem).find('.desc').text(),
+        description: $(elem).find('.desc').find('.listing-link').text(),
         link: href,
         price: parseInt(price && price.length > 2 ? price.substring(0, price.length - 2) : -1)
       })

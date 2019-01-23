@@ -30,7 +30,7 @@ var vue = new Vue({
       if (this.noMoreData) return
       var vm = this
       axios({
-        url: 'https://hyöty.net/omatori-backend/query',
+        url: 'https://hyöty.net/omatori/backend/query',
         params: { keyword: vm.query, category: vm.category, onsale: vm.onsale, free: vm.free, page: page },
         method: 'get'
       }).then(function (response) {

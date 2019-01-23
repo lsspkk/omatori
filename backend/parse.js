@@ -21,12 +21,15 @@ var doParse = function (data) {
     // console.log('\n\n')
     if ($(elem).find('.item_image').attr('src')) {
       var price = $(elem).find('.list_price').text()
-      var href = $(elem).attr('onclick')
+      if (price) {
+        price = price.replace(/\s/g, '')
+      }
+      var href = $(elem).attr('href')
       results.push({
         image: $(elem).find('.item_image').attr('src'),
         date: $(elem).find('.date_image').text(),
-        description: $(elem).find('.desc a').text(),
-        link: href.split("'").length > 1 ? href.split("'")[1] : href,
+        description: $(elem).find('.desc').text(),
+        link: href,
         price: parseInt(price && price.length > 2 ? price.substring(0, price.length - 2) : -1)
       })
     }

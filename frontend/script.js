@@ -3,15 +3,15 @@ var vue = new Vue({
   data() {
     return {
       items: [{
-        image: 'https://vuejs.org/images/logo.png',
-        link: 'https://vuejs.org',
-        description: 'Vue sivu on halpa',
+        image: 'default_image_icon.png',
+        link: '',
+        description: 'Esimerkki',
         date: 'Jou 1 12:12',
         price: 30
       }],
-      query: 'näyttö',
-      category: '5030',
-      onsale: 'true',
+      query: ' ',
+      category: '3000',
+      onsale: 'false',
       free: 'true',
       page: 1,
       isLoading: false,
@@ -79,9 +79,9 @@ var vue = new Vue({
 
     for (var i = 0; i < 15; i++) {
       this.items.push({
-        image: 'https://vuejs.org/images/logo.png',
-        link: 'https://vuejs.org',
-        description: 'Vue sivu on halpa',
+        image: 'default_image_icon.png',
+        link: '',
+        description: 'Esimerkki',
         date: 'Jou 1 12:12',
         price: i
       })

@@ -10,7 +10,7 @@ var vue = new Vue({
         price: 30
       }],
       query: ' ',
-      category: '3000',
+      category: '3020',
       onsale: 'false',
       free: 'true',
       page: 1,

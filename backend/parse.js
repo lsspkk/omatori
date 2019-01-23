@@ -30,7 +30,7 @@ var doParse = function (data) {
         date: $(elem).find('.date_image').text(),
         description: $(elem).find('.desc').find('.listing-link').text(),
         link: href,
-        price: parseInt(price && price.length > 2 ? price.substring(0, price.length - 2) : -1)
+        price: parseInt(price && price.length > 1 ? price.substring(0, price.length - 1) : -1)
       })
     }
   })

@@ -98,8 +98,18 @@
 				<p><input type="checkbox" class="checkbox" id="free" v-model="free" /><label for="free">Annetaan</label></p>
 				</div>
 				<button id="search" class="is-small is-secondary is-icon" @click="doQuery()"><span class="icon-kube-search"></span>Hae</button>
+				<div id="showhelp" @click="showHelp = !showHelp">?</div>
+
 			</div>
 
+		</div>
+		<div id="help" v-if="showHelp">
+			<p><b>tori.fi</b> - esimerkki käyttöliittymästä, jota voi selata</p>
+			<ul>
+			<li>Klikkaamalla Hae-nappia, tehdään aina uunituore haku</li>
+			<li>Hakusana/kategoria tallennetaan selaimen muistiin</li>
+			<li>Jos sivulle palatessa on kulunut yli 10min edellisestä hausta, tehdään uunituore haku</li>
+		</ul>
 		</div>
 		<div class="items">
 			<div class="item" v-for="item in items">

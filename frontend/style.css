@@ -68,13 +68,13 @@ body, #app {
     margin-right: 5px;
 }
 #third {
-    width: 30%;
+    width: 35%;
+    display: grid;
+    grid-auto-flow: column;
 }
 #categories {
-    float: left;
 }
 #search {
-    float: right;
     color: rgb(08, 82, 112);
     border: 2px solid rgb(0, 82, 112);
     border-radius: 5px;
@@ -89,7 +89,18 @@ body, #app {
     font-size: 150%;
     font-weight: bold;
     text-align: center;
+    color: #222;
+}
+#help {
     color: #ddd;
+    cursor: help;
+    margin: 10px 20% 10px;
+}
+#showhelp {
+    font-size: 40px;
+    padding: 8px 0px 0px 20px;
+    font-weight: bold;
+    cursor: help;
 }
 @media all and (max-width: 500px) {
     #bar {

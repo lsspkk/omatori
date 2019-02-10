@@ -21,12 +21,11 @@ var vue = new Vue({
   },
   methods: {
     doQuery(page) {
+      this.isLoading = true
       if (!page) {
-        page = 1
         this.noMoreData = false
+        page = 1
         this.page = 1
-        this.loading = true
-
       }
       if (this.noMoreData) return
       var vm = this
@@ -37,7 +36,6 @@ var vue = new Vue({
         method: 'get'
       }).then(function (response) {
         console.log('Page: ', vm.page, 'Response items count:', response.data.length)
-        // console.log(vm, vm.items)
         if (vm.page > 1) {
           vm.items.push.apply(vm.items, response.data)
         }
@@ -46,30 +44,26 @@ var vue = new Vue({
         }
         vm.page++
         vm.isLoading = false
-        if (!response.data || response.data.length == 0) {
+        if (!response.data || response.data.length === 0) {
           vm.noMoreData = true
         }
-        else {
-          vm.saveState();
-        }
+        vm.saveState()
       })
         .catch(error => {
-          vm.shown++
           vm.noMoreData = true
-          console.log(error)
+          console.log("Error when loading items from backend: ", error)
         })
-
+    },
+    lastItemPosition() {
+      var container = document.getElementsByClassName("items")[0]
+      var last = container.lastChild
+      return last != null ?  last.getBoundingClientRect().top : 0
+    },
+    scrolledToBottom() {
+      return (window.innerHeight + window.scrollY) >= document.body.scrollHeight
     },
     handleScroll() {
-      var container = document.getElementsByClassName("items")[0];
-      var last = container.lastChild
-      var scrollPosition = window.pageYOffset;
-      var windowSize = window.innerHeight;
-      var bodyHeight = document.body.offsetHeight;
-      var lastPosition = last.getBoundingClientRect().top
-      // console.log('Distance to page bottom:', lastPosition, last.innerHTML)
-      if (lastPosition < 800 && !this.isLoading && !this.noMoreData) {
-        this.isLoading = true
+      if (this.scrolledToBottom() && !this.isLoading && !this.noMoreData) {
         console.log("scroll detection loading next page")
         this.doQuery(this.page)
       }
@@ -85,11 +79,7 @@ var vue = new Vue({
         date: new Date()
       }))
     },
-  },
-  mounted() {
-    window.addEventListener('scroll', this.handleScroll)
-
-    if (localStorage.getItem('omatori')) {
+    loadState() {
       var saved = JSON.parse(localStorage.getItem('omatori'))
       this.query = saved.query
       this.category = saved.category
@@ -97,27 +87,40 @@ var vue = new Vue({
       this.onsale = saved.onsale
       var now = new Date().getTime()
       var msToLastSearch = now - Date.parse(saved.date)
-      if( msToLastSearch < 600000 ){ // 10 min
+      if (msToLastSearch < 600000) { // 10 min
         this.items = saved.items
         this.page = saved.page
-        console.log('Using stored items, seconds from last search:',msToLastSearch*1000)
+        console.log('Using stored items, seconds from last search:', msToLastSearch * 1000)
       }
       else {
         this.doQuery(0)
-        console.log('Reloading items, seconds from last search:',msToLastSearch*1000)
+        console.log('Reloading items, seconds from last search:', msToLastSearch * 1000)
       }
-      return;
+    }
+  },
+  updated() {
+    if (this.lastItemPosition() < window.innerHeight && !this.isLoading && !this.noMoreData && this.page === 2 && this.items.length > 30) {
+      console.log("screen not filled from first items, loading more...")
+      this.doQuery(this.page)
+    }
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll)
+
+    if (localStorage.getItem('omatori')) {
+      this.loadState()
+      return
     }
     for (var i = 0; i < 15; i++) {
-        this.items.push({
-          image: 'default_image_icon.png',
-          link: '',
-          description: 'Esimerkki',
-          date: 'Jou 1 12:12',
-          price: i
-        })
-      }
-    
+      this.items.push({
+        image: 'default_image_icon.png',
+        link: '',
+        description: 'Esimerkki',
+        date: 'Jou 1 12:12',
+        price: i
+      })
+    }
+
   }
 })
 

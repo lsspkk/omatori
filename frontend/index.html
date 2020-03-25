@@ -2,23 +2,23 @@
 <html>
 
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>omatori</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>omatori</title>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="https://npmcdn.com/vue/dist/vue.min.js"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	<link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/kube/6.5.2/css/kube.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://npmcdn.com/vue/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/kube/6.5.2/css/kube.css">
 </head>
 
 <body>
-	<div id="app" class="page">
-		<div id="bar">
-			<input id="query" @keyup.enter="doQuery()" v-model="query" />
+    <div id="app" class="page">
+        <div id="bar">
+            <input id="query" @keyup.enter="doQuery()" v-model="query" />
 
-			<select id="category" name="category" class="search_category" v-model="category">
+            <select id="category" name="category" class="search_category" v-model="category">
 				<option value="0">Kaikki osastot</option>
 
 				<option class="main_category" value="2000">-- AJONEUVOT JA KONEET --</option>
@@ -92,42 +92,43 @@
 				<option value="7010">Muut</option>
 			</select>
 
-			<div id="third">
-				<div id="categories">
-				<p><input type="checkbox" class="checkbox" id="onsale" v-model="onsale" /><label for="onsale">Myydään</label></label></p>
-				<p><input type="checkbox" class="checkbox" id="free" v-model="free" /><label for="free">Annetaan</label></p>
-				</div>
-				<button id="search" class="is-small is-secondary is-icon" @click="doQuery()"><span class="icon-kube-search"></span>Hae</button>
-				<div id="showhelp" @click="showHelp = !showHelp">?</div>
+            <div id="third">
+                <div id="categories">
+                    <p><input type="checkbox" class="checkbox" id="onsale" v-model="onsale" /><label for="onsale">Myydään</label></label>
+                    </p>
+                    <p><input type="checkbox" class="checkbox" id="free" v-model="free" /><label for="free">Annetaan</label></p>
+                </div>
+                <button id="search" class="is-small is-secondary is-icon" @click="doQuery()"><span class="icon-kube-search"></span>Hae</button>
+                <div id="showhelp" @click="showHelp = !showHelp">?</div>
 
-			</div>
+            </div>
 
-		</div>
-		<div id="help" v-if="showHelp">
-			<p><b>tori.fi</b> - esimerkki käyttöliittymästä, jota voi selata</p>
-			<ul>
-			<li>Klikkaamalla Hae-nappia, tehdään aina uunituore haku</li>
-			<li>Hakusana/kategoria tallennetaan selaimen muistiin</li>
-			<li>Jos sivulle palatessa on kulunut yli 10min edellisestä hausta, tehdään uunituore haku</li>
-		</ul>
-		</div>
-		<div class="items">
-			<div class="item" v-for="item in items">
-				<a :href="item.link">
-					<img class="image" :src="item.image" onerror="this.src='https://vuejs.org/images/logo.png'"/>
-					<div class="date">{{item.date}}</div>
-					<div class="description"><span class="price">{{ item.price }}€</span> {{item.description}} </div>
-				</a>
-			</div>
-		</div>
-		<div v-if="isLoading" class="message">
-			<p>Ladataan seuraavat ilmoitukset</p>
-		</div>
-		<div v-if="noMoreData" class="message">
-			<p>Ei löydy <span v-if="items.length > 0">enää </span>ilmoituksia, tee uusi haku.</p>
-		</div>
+        </div>
+        <div id="help" v-if="showHelp">
+            <p><b>tori.fi</b> - esimerkki käyttöliittymästä, jota voi selata</p>
+            <ul>
+                <li>Klikkaamalla Hae-nappia, tehdään aina uunituore haku</li>
+                <li>Hakusana/kategoria tallennetaan selaimen muistiin</li>
+                <li>Jos sivulle palatessa on kulunut yli 10min edellisestä hausta, tehdään uunituore haku</li>
+            </ul>
+        </div>
+        <div class="items">
+            <div class="item" v-for="item in items">
+                <a :href="item.link">
+                    <img class="image" :src="item.image" onerror="this.src='https://vuejs.org/images/logo.png'" />
+                    <div class="date">{{item.date}}</div>
+                    <div class="title"><span class="price">{{ item.price }}€</span> {{item.title}} </div>
+                </a>
+            </div>
+        </div>
+        <div v-if="isLoading" class="message">
+            <p>Ladataan seuraavat ilmoitukset</p>
+        </div>
+        <div v-if="noMoreData" class="message">
+            <p>Ei löydy <span v-if="items.length > 0">enää </span>ilmoituksia, tee uusi haku.</p>
+        </div>
 
-		<script src="script.js"></script>
+        <script src="script.js"></script>
 
 </body>
 

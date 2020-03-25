@@ -1,17 +1,21 @@
-body, #app {
+body,
+#app {
     background-color: #222 !important;
     width: 100%;
 }
+
 .items {
     width: 100%;
     min-height: 100%;
     display: flex;
     flex-wrap: wrap;
 }
+
 .item {
     width: 220px;
     height: 250px;
 }
+
 .image {
     width: 200px;
     height: auto;
@@ -19,35 +23,42 @@ body, #app {
     margin: 2px auto;
     display: block;
 }
+
 .date {
     height: 10px;
     line-height: 10px;
     font-size: 10px;
 }
-.description {
+
+.title {
     font-size: 80%;
     line-height: 1.25em;
     height: 40px;
     display: block;
 }
+
 .item a {
-    color: #ddd !important; 
+    color: #ddd !important;
     text-decoration: none !important;
 }
+
 #bar {
     background: rgb(48, 122, 212);
     padding: 5px;
     display: flex;
     color: #fff;
 }
+
 #bar p {
     margin-bottom: 0px;
     margin-top: -2px;
 }
+
 #bar label {
     color: #fff;
-    display:inline;
+    display: inline;
 }
+
 #bar .checkbox {
     min-width: auto;
     width: auto;
@@ -55,17 +66,21 @@ body, #app {
     padding-left: 20px;
     margin-top: 2px;
 }
-#bar input, #bar select {
+
+#bar input,
+#bar select {
     width: 30%;
     min-width: 200px;
     float: left;
     margin-right: 5px;
 }
+
 #third {
     width: 35%;
     display: grid;
     grid-auto-flow: column;
 }
+
 #search {
     color: rgb(08, 82, 112);
     border: 2px solid rgb(0, 82, 112);
@@ -75,6 +90,7 @@ body, #app {
     line-height: 8px;
     margin: 0px;
 }
+
 .message p {
     width: 100%;
     margin: 20px auto;
@@ -83,25 +99,29 @@ body, #app {
     text-align: center;
     color: #222;
 }
+
 #help {
     color: #ddd;
     cursor: help;
     margin: 10px 20% 10px;
 }
+
 #showhelp {
     font-size: 40px;
     padding: 8px 0px 0px 20px;
     font-weight: bold;
     cursor: help;
 }
+
 @media all and (max-width: 500px) {
     #bar {
         flex-wrap: wrap;
         width: 100%;
     }
-    #bar input, #bar select {
-        width:100%;
-        float:none;
+    #bar input,
+    #bar select {
+        width: 100%;
+        float: none;
     }
     .image {
         width: 150px;
@@ -124,5 +144,4 @@ body, #app {
         margin-top: 5px;
         width: 100%;
     }
-    
 }

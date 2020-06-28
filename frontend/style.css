@@ -75,7 +75,7 @@ body,
     margin-right: 5px;
 }
 
-#third {
+.third {
     width: 35%;
     display: grid;
     grid-auto-flow: column;
@@ -113,6 +113,30 @@ body,
     cursor: help;
 }
 
+@media all and (max-width: 700px) {
+    #help {
+        margin: 10px 5% 10px;
+    }
+        #bar {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    #bar input,
+    #bar select {
+        flex: 1;
+    }
+    #bar p {
+        display: inline;
+        padding-right: 20px;
+        line-height: 40px;
+    }
+    .third {
+        margin-top: 5px;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+}
+
 @media all and (max-width: 500px) {
     #bar {
         flex-wrap: wrap;
@@ -140,7 +164,7 @@ body,
         padding-right: 20px;
         line-height: 40px;
     }
-    #third {
+    .third {
         margin-top: 5px;
         width: 100%;
     }

@@ -16,7 +16,7 @@ app.get('/query', (req, res) => {
   var keyword = encodeURIComponent(req.query.keyword)
   console.log('request: /query ', req.query)
 
-  const region = req.query.region === 'kantahame' ? 'uusimaa?w=117' : 'pirkanmaa?w=111'
+  const region = req.query.region === 'kanta-hame' ? 'uusimaa?w=117' : 'pirkanmaa?w=111'
   var url = 'https://www.tori.fi/' + region + '&q=' + keyword + '&cg=' + req.query.category
   if (req.query.onsale == 'true') url += '&st=s'
   if (req.query.free == 'true') url += '&st=g'

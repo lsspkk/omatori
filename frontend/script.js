@@ -17,12 +17,11 @@ var vue = new Vue({
       page: 1,
       isLoading: false,
       noMoreData: false,
-      region: []
+      region: 'pirkanmaa'
     }
   },
   methods: {
     doQuery(page) {
-      console.log(this.region)
       this.isLoading = true
       if (!page) {
         this.noMoreData = false
@@ -34,10 +33,11 @@ var vue = new Vue({
       axios({
         // url: 'http://localhost:3000/query',
         url: 'https://hyöty.net/omatori-backend/query',
-        params: { keyword: vm.query, category: vm.category, onsale: vm.onsale, free: vm.free, page: page },
+        params: { keyword: vm.query, category: vm.category, onsale: vm.onsale, free: vm.free, page: page, region:vm.region },
         method: 'get'
       }).then(function (response) {
         console.log('Page: ', vm.page, 'Response items count:', response.data.length)
+        console.log(response.data)
         if (vm.page > 1) {
           vm.items.push.apply(vm.items, response.data)
         } else {

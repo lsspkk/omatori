@@ -11,7 +11,7 @@ const port = 3000
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
-function toriRequest(url, res) {
+function toriRequest(url, req, res) {
   if (req.query.onsale == 'true') url += '&st=s'
   if (req.query.free == 'true') url += '&st=g'
   if (req.query.page > '1') url += '&o=' + req.query.page
@@ -51,7 +51,7 @@ app.get('/query', (req, res) => {
   const region = req.query.region === 'kanta-hame' ? 'uusimaa?w=117' : 'pirkanmaa?w=111'
   let url = 'https://www.tori.fi/' + region + '&q=' + keyword + '&cg=' + req.query.category
 
-  toriRequest(url, res)
+  toriRequest(url, req, res)
 })
 
 const regions = {
@@ -83,7 +83,7 @@ app.get('/query2', (req, res) => {
   const region = regions[req.query.region] || regions['kokosuomi']
   let url = 'https://www.tori.fi/uusimaa?w=' + region + '&q=' + keyword + '&cg=' + req.query.category
 
-  toriRequest(url, res)
+  toriRequest(url, req, res)
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
